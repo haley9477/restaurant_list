@@ -1,5 +1,5 @@
 #我的餐廳清單
-![MyImage][./public/image/restaurant_list_cover.jpg]
+![MyImage][./public/image/restaurant_list_cover.png]
 
 ##介紹
 ---
