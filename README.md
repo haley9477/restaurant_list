@@ -1,7 +1,8 @@
-#我的餐廳清單
-![MyImage][./public/image/restaurant_list_cover.png]
+# 我的餐廳清單
 
-##介紹
+![Index](./public/image/restaurant_list_cover.png)
+
+## 介紹
 ---
 紀錄屬於自己的餐廳清單，可以瀏覽餐廳、查看詳細資訊及連結到地圖。
 ###功能
@@ -10,7 +11,7 @@
 - 使用者可以搜尋特定餐廳
 - 使用者可以連結至 Google 地圖
 
-##如何使用
+## 如何使用
 ---
 1. 請先確認有安裝Node.js 與 npm
 2. 將專案 clone 到本地
@@ -31,7 +32,7 @@
     ctrl + c
     ```
 
-##開發工具
+## 開發工具
 ---
 - Node.js 18.16.0
 - Express 4.16.4
