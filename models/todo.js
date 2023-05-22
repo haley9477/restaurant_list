@@ -5,6 +5,15 @@ const todoSchema = new Schema({
     type: String,
     required: true
   },
+  category: {
+    type: String
+  },
+  rating: {
+    type: String
+  },
+  image: {
+    type: String
+  },
   done: {
     type: Boolean
   }

@@ -49,7 +49,9 @@ app.get('/todos/new', (req, res) => {
 app.post('/todos', (req, res) => {
   const name = req.body.name
   const category = req.body.category
-  return Todo.create({ name, category })
+  const rating = req.body.rating
+  const image = req.body.image
+  return Todo.create({ name, category, rating, image })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
