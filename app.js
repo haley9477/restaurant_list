@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars')
 const restaurantList = require('./restaurant.json')
 const mongoose = require('mongoose')
 const Todo = require('./models/todo')
+const bodyParser = require('body-parser')
 const app = express()
 
 // variables
@@ -31,11 +32,25 @@ app.set('view engine', 'handlebars')
 // setting static engine
 app.use(express.static('public'))
 
+app.use(bodyParser.urlencoded({ extended: true }))
+
 // routes setting 
 app.get('/', (req, res) => {
   Todo.find()
     .lean()
     .then(todos => res.render('index', { todos, restaurants: restaurantList.results }))
+    .catch(error => console.log(error))
+})
+
+app.get('/todos/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/todos', (req, res) => {
+  const name = req.body.name
+  const category = req.body.category
+  return Todo.create({ name, category })
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
