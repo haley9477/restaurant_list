@@ -69,6 +69,40 @@ app.get('/todos/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.get('/todos/:id/edit', (req, res) => {
+  const id = req.params.id
+  return Todo.findById(id)
+    .lean()
+    .then((todo) => res.render('edit', { todo }))
+    .catch(error => console.log(error))
+})
+
+app.post('/todos/:id/edit', (req, res) => {
+  const id = req.params.id
+  const name = req.body.name
+  const category = req.body.category
+  const rating = req.body.rating
+  const image = req.body.image
+  const phone = req.body.phone
+  const location = req.body.location
+  const google_map = req.body.google_map
+  const description = req.body.description
+  return Todo.findById(id)
+    .then(todo => {
+      todo.name = name
+      todo.category = category
+      todo.rating = rating
+      todo.image = image
+      todo.phone = phone
+      todo.location = location
+      todo.google_map = google_map
+      todo.description = description
+      return todo.save()
+    })
+    .then(() => res.redirect(`/todos/${id}`))
+    .catch(error => console.log(error))
+})
+
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
   const restaurants = restaurantList.results.filter(restaurant => {

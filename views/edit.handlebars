@@ -1,4 +1,5 @@
-<form action="/todos" method="POST">
+<form action="/todos/{{todo._id}}/edit"
+      method="POST">
   <div class="container m-5">
     <div class="mb-3">
       <label for="name"
@@ -7,6 +8,7 @@
              class="form-control"
              id="name"
              name="name"
+             value="{{todo.name}}"
              placeholder="餐廳名字">
     </div>
     <div class="mb-3">
@@ -16,17 +18,19 @@
              class="form-control"
              id="category"
              name="category"
+             value="{{todo.category}}"
              placeholder="餐廳類別">
     </div>
-<div class="mb-3">
-       <label for="phone"
-              class="form-label">電話</label>
-       <input type="text"
-              class="form-control"
-              id="phone"
-              name="phone"
-              placeholder="電話">
-</div>
+    <div class="mb-3">
+      <label for="phone"
+             class="form-label">電話</label>
+      <input type="text"
+             class="form-control"
+             id="phone"
+             name="phone"
+             value="{{todo.phone}}"
+             placeholder="電話">
+    </div>
     <div class="mb-3">
       <label for="rating"
              class="form-label">評價</label>
@@ -34,6 +38,7 @@
              class="form-control"
              id="rating"
              name="rating"
+             value="{{todo.rating}}"
              placeholder="評價">
     </div>
     <div class="mb-3">
@@ -43,6 +48,7 @@
              class="form-control"
              id="image"
              name="image"
+             value="{{todo.image}}"
              placeholder="照片網址">
     </div>
     <div class="mb-3">
@@ -52,16 +58,18 @@
              class="form-control"
              id="location"
              name="location"
+             value="{{todo.location}}"
              placeholder="餐廳位置">
     </div>
     <div class="mb-3">
-       <label for="google_map"
-              class="form-label">地圖網址</label>
-       <input type="text"
-              class="form-control"
-              id="google_map"
-              name="google_map"
-              placeholder="地圖網址">
+      <label for="google_map"
+             class="form-label">地圖網址</label>
+      <input type="text"
+             class="form-control"
+             id="google_map"
+             name="google_map"
+             value="{{todo.google_map}}"
+             placeholder="地圖網址">
     </div>
     <div class="mb-3">
       <label for="description"
@@ -70,9 +78,11 @@
              class="form-control"
              id="description"
              name="description"
+             value="{{todo.description}}"
              placeholder="敘述">
     </div>
-    <button type="submit">新增</button>
+    <button type="submit">儲存</button>
+    <a class="text-end" href="/">回首頁</a>
   </div>
-  
+
 </form>

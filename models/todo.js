@@ -11,6 +11,18 @@ const todoSchema = new Schema({
   rating: {
     type: String
   },
+  phone: {
+    type: String
+  },
+  location: {
+    type: String
+  },
+  google_map: {
+    type: String
+  },
+  description: {
+    type: String
+  },
   image: {
     type: String
   },
