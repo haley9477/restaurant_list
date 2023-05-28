@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 const Todo = require('../todo')
+const restaurantList = require('../../restaurant.json').results
 
 if (process.env.NODE_ENV !== 'production') {
   require('dotenv').config()
@@ -15,8 +16,10 @@ db.on('error', () => {
 
 db.once('open', () => {
   console.log('mongodb connected!')
-  for (let i = 0; i < 10; i++) {
-    Todo.create({name: `name-${i}`})
-  }
-  console.log('done')
+  Todo.create(restaurantList)
+    .then(() => {
+      console.log('done')
+      db.close()
+    })
+    .catch(error => console.log(error))
 })
