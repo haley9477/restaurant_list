@@ -78,12 +78,11 @@
               <a href="./todos/{{this._id}}"
                  class="text-secondary text-end">Detail</a>
               <a href="./todos/{{this._id}}/edit">Edit</a>
+              <form action="./todos/{{this._id}}/delete" method="POST" style="display: inline;"><button type="submit">Delete</button></form>
             </div>
           </div>
           
         </div>
-        
-          
         
         {{/each}}
       </div>

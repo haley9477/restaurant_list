@@ -44,6 +44,9 @@
     <div class="d-flex justify-content-around mb-2">
       <a href="/todos/{{todo._id}}/edit">修改</a>
       <a href="/">回首頁</a>
+      <form action="/todos/{{todo._id}}/delete" method="POST" style="display: inline;">
+        <button type="submit">刪除</button>
+      </form>
     </div>
     
   </div>
