@@ -1,7 +1,6 @@
 // packages
 const express = require('express')
 const exphbs = require('express-handlebars')
-const restaurantList = require('./restaurant.json')
 const mongoose = require('mongoose')
 const Todo = require('./models/todo')
 const bodyParser = require('body-parser')
@@ -35,17 +34,20 @@ app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // routes setting 
+// 瀏覽全部餐廳
 app.get('/', (req, res) => {
   Todo.find()
     .lean()
-    .then(todos => res.render('index', { todos, restaurants: restaurantList.results }))
+    .then(todos => res.render('index', { todos }))
     .catch(error => console.log(error))
 })
 
+// 新增餐廳頁面
 app.get('/todos/new', (req, res) => {
   return res.render('new')
 })
 
+// 新增餐廳
 app.post('/todos', (req, res) => {
   const name = req.body.name
   const category = req.body.category
@@ -56,11 +58,7 @@ app.post('/todos', (req, res) => {
     .catch(error => console.log(error))
 })
 
-app.get('/restaurants/:restaurant_id', (req, res) => {
-  const restaurant = restaurantList.results.find(restaurant => restaurant.id.toString() === req.params.restaurant_id)
-  res.render('show', { restaurants: restaurant })
-})
-
+// 瀏覽特定餐廳
 app.get('/todos/:id', (req, res) => {
   const id = req.params.id
   return Todo.findById(id)
@@ -69,6 +67,7 @@ app.get('/todos/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 編輯餐廳頁面
 app.get('/todos/:id/edit', (req, res) => {
   const id = req.params.id
   return Todo.findById(id)
@@ -77,6 +76,7 @@ app.get('/todos/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 更新餐廳
 app.post('/todos/:id/edit', (req, res) => {
   const id = req.params.id
   const name = req.body.name
@@ -103,20 +103,26 @@ app.post('/todos/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// 刪除餐廳
 app.post('/todos/:id/delete', (req, res) => {
   const id = req.params.id
   return Todo.findById(id)
     .then(todo => todo.remove())
-    .then((todo) => res.redirect('/'))
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
+// 搜尋特定餐廳
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
-  const restaurants = restaurantList.results.filter(restaurant => {
-    return restaurant.name.toLowerCase().includes(keyword.toLowerCase()) || restaurant.category.toLowerCase().includes(keyword.toLowerCase())
-  })
-  res.render('index', { restaurants: restaurants, keyword: keyword })
+
+  Todo.find()
+    .lean()
+    .then(todos => {
+      const filterRestaurantsData = todos.filter(data => data.name.trim().toLowerCase().includes(keyword) || data.category.trim().toLowerCase().includes(keyword))
+      res.render('index', { todos: filterRestaurantsData, keyword })
+    })
+    .catch(error => console.log(error))  
 })
 
 // start and listen the server
