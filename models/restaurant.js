@@ -1,6 +1,6 @@
 const mongoose = require('mongoose') // 載入
 const Schema = mongoose.Schema // mongoose 提供模組
-const todoSchema = new Schema({
+const restaurantSchema = new Schema({
   name: {
     type: String,
     required: true
@@ -30,4 +30,4 @@ const todoSchema = new Schema({
     type: Boolean
   }
 })
-module.exports = mongoose.model('Todo', todoSchema)
+module.exports = mongoose.model('Restaurant', restaurantSchema)

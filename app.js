@@ -2,7 +2,7 @@
 const express = require('express')
 const exphbs = require('express-handlebars')
 const mongoose = require('mongoose')
-const Todo = require('./models/todo')
+const Restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
 const app = express()
 
@@ -36,48 +36,48 @@ app.use(bodyParser.urlencoded({ extended: true }))
 // routes setting 
 // 瀏覽全部餐廳
 app.get('/', (req, res) => {
-  Todo.find()
+  Restaurant.find()
     .lean()
-    .then(todos => res.render('index', { todos }))
+    .then(restaurants => res.render('index', { restaurants }))
     .catch(error => console.log(error))
 })
 
 // 新增餐廳頁面
-app.get('/todos/new', (req, res) => {
+app.get('/restaurants/new', (req, res) => {
   return res.render('new')
 })
 
 // 新增餐廳
-app.post('/todos', (req, res) => {
+app.post('/restaurants', (req, res) => {
   const name = req.body.name
   const category = req.body.category
   const rating = req.body.rating
   const image = req.body.image
-  return Todo.create({ name, category, rating, image })
+  return Restaurant.create({ name, category, rating, image })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 
 // 瀏覽特定餐廳
-app.get('/todos/:id', (req, res) => {
+app.get('/restaurants/:id', (req, res) => {
   const id = req.params.id
-  return Todo.findById(id)
+  return Restaurant.findById(id)
     .lean()
-    .then((todo) => res.render('detail', { todo }))
+    .then((restaurant) => res.render('detail', { restaurant }))
     .catch(error => console.log(error))
 })
 
 // 編輯餐廳頁面
-app.get('/todos/:id/edit', (req, res) => {
+app.get('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
-  return Todo.findById(id)
+  return Restaurant.findById(id)
     .lean()
-    .then((todo) => res.render('edit', { todo }))
+    .then((restaurant) => res.render('edit', { restaurant }))
     .catch(error => console.log(error))
 })
 
 // 更新餐廳
-app.post('/todos/:id/edit', (req, res) => {
+app.post('/restaurants/:id/edit', (req, res) => {
   const id = req.params.id
   const name = req.body.name
   const category = req.body.category
@@ -104,10 +104,10 @@ app.post('/todos/:id/edit', (req, res) => {
 })
 
 // 刪除餐廳
-app.post('/todos/:id/delete', (req, res) => {
+app.post('/restaurants/:id/delete', (req, res) => {
   const id = req.params.id
-  return Todo.findById(id)
-    .then(todo => todo.remove())
+  return Restaurant.findById(id)
+    .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
@@ -116,11 +116,11 @@ app.post('/todos/:id/delete', (req, res) => {
 app.get('/search', (req, res) => {
   const keyword = req.query.keyword
 
-  Todo.find()
+  Restaurant.find()
     .lean()
-    .then(todos => {
-      const filterRestaurantsData = todos.filter(data => data.name.trim().toLowerCase().includes(keyword) || data.category.trim().toLowerCase().includes(keyword))
-      res.render('index', { todos: filterRestaurantsData, keyword })
+    .then(restaurants => {
+      const filterRestaurantsData = restaurants.filter(data => data.name.trim().toLowerCase().includes(keyword) || data.category.trim().toLowerCase().includes(keyword))
+      res.render('index', { restaurants: filterRestaurantsData, keyword })
     })
     .catch(error => console.log(error))  
 })

@@ -1,4 +1,4 @@
-<form action="/todos/{{todo._id}}/edit"
+<form action="/restaurants/{{restaurant._id}}/edit"
       method="POST">
   <div class="container m-5">
     <div class="mb-3">
@@ -8,7 +8,7 @@
              class="form-control"
              id="name"
              name="name"
-             value="{{todo.name}}"
+             value="{{restaurant.name}}"
              placeholder="餐廳名字">
     </div>
     <div class="mb-3">
@@ -18,7 +18,7 @@
              class="form-control"
              id="category"
              name="category"
-             value="{{todo.category}}"
+             value="{{restaurant.category}}"
              placeholder="餐廳類別">
     </div>
     <div class="mb-3">
@@ -28,7 +28,7 @@
              class="form-control"
              id="phone"
              name="phone"
-             value="{{todo.phone}}"
+             value="{{restaurant.phone}}"
              placeholder="電話">
     </div>
     <div class="mb-3">
@@ -38,7 +38,7 @@
              class="form-control"
              id="rating"
              name="rating"
-             value="{{todo.rating}}"
+             value="{{restaurant.rating}}"
              placeholder="評價">
     </div>
     <div class="mb-3">
@@ -48,7 +48,7 @@
              class="form-control"
              id="image"
              name="image"
-             value="{{todo.image}}"
+             value="{{restaurant.image}}"
              placeholder="照片網址">
     </div>
     <div class="mb-3">
@@ -58,7 +58,7 @@
              class="form-control"
              id="location"
              name="location"
-             value="{{todo.location}}"
+             value="{{restaurant.location}}"
              placeholder="餐廳位置">
     </div>
     <div class="mb-3">
@@ -68,7 +68,7 @@
              class="form-control"
              id="google_map"
              name="google_map"
-             value="{{todo.google_map}}"
+             value="{{restaurant.google_map}}"
              placeholder="地圖網址">
     </div>
     <div class="mb-3">
@@ -78,7 +78,7 @@
              class="form-control"
              id="description"
              name="description"
-             value="{{todo.description}}"
+             value="{{restaurant.description}}"
              placeholder="敘述">
     </div>
     <button type="submit">儲存</button>
