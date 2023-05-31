@@ -1,13 +1,16 @@
 # 我的餐廳清單
 
-![Index](./public/image/restaurant_list_cover.png)
+![Index](./public/image/index.png)
+![Index](./public/image/detail.png)
+![Index](./public/image/new_restaurant.png)
 
 ## 介紹
-紀錄屬於自己的餐廳清單，可以瀏覽餐廳、查看詳細資訊及連結到地圖。
+紀錄屬於自己的餐廳清單，可以瀏覽、新增、編輯、刪除餐廳及查看詳細資訊並連結到地圖。
 
 ### 功能
-- 使用者可以看到所有餐廳
-- 使用者可以看餐廳詳細資訊
+- 使用者可以瀏覽所有餐廳
+- 使用者可以瀏覽餐廳詳細資訊
+- 使用者可以新增、編輯、刪除餐廳
 - 使用者可以搜尋特定餐廳
 - 使用者可以連結至 Google 地圖
 
@@ -34,5 +37,7 @@
 ## 開發工具
 - Node.js 18.16.0
 - Express 4.16.4
-- Express-handlebars 3.0.0
+- Express-handlebars 4.0.2
 - Bootstrap 5.1.3
+- MongoDB
+- Mongoose 5.9.7
